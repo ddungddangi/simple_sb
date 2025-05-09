@@ -8,7 +8,7 @@ pipeline {
         GITNAME = 'ddungddangi'            
         GITEMAIL = 'gaemineunttungttung@gmail.com' 
         GITWEBADD = 'https://github.com/ddungddangi/simple_sb.git'
-        GITSSHADD = 'git@github.com:ddungddangi/simple_sb.gi'
+        GITSSHADD = 'git@github.com:ddungddangi/dep.git'
         GITCREDENTIAL = 'github-credentials'
         
         DOCKERHUB = 'gaemineunttungttung/spring'
@@ -90,7 +90,8 @@ pipeline {
                 git credentialsId: GITCREDENTIAL, url: GITSSHADD, branch: 'main'
                 sh "git config --global user.email ${GITEMAIL}"
                 sh "git config --global user.name ${GITNAME}"
-                sh "sed -i 's@${DOCKERHUB}:.*@${DOCKERHUB}:${currentBuild.number}@g' fast.yml"
+                sh "sed -i 's@${DOCKERHUB}:.*@${DOCKERHUB}:${currentBuild.number}@g' deployment.yml" 
+                // dep 레포지토리에 있는 dep.yml파일 
 
                 sh "git add ."
                 sh "git branch -M main"
